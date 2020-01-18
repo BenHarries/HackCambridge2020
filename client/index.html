@@ -44,6 +44,7 @@
 
         <!-- FontAwesome -->
         <script src="https://kit.fontawesome.com/dbea95f351.js" crossorigin="anonymous"></script>
+        <script src="./index.js"></script>
 
     </head>
 
@@ -58,14 +59,10 @@
         <div class="container">
             <div class="row" style="padding-top: 20px;">
                 <!-- Words -->
-                <div class="col-8" id="Words">
-                    <p> The Neolithic British Isles refers to the period of British, Irish and Manx history that spanned from circa 4000 to circa 2,500 BCE.[1] The final part of the Stone Age in the British Isles, it was a part of the greater Neolithic, or "New Stone Age", across Europe.
+                <div class="col-8">
 
-                        During the preceding Mesolithic period, the inhabitants of the British Isles had been Mesolithic European hunter-gatherers. Around 4000 BCE migrants began arriving from central Europe. Although the earliest indisputably acknowledged languages spoken in the British Isles belonged to the Celtic branch of the Indo-European family it is not known what language these early farming people spoke. These migrants brought new ideas, leading to a radical transformation of society and landscape that has been called the Neolithic Revolution. The Neolithic period in the British Isles was characterised by the adoption of agriculture and sedentary living. To make room for the new farmland, these early agricultural communities undertook mass deforestation across the islands, dramatically and permanently transforming the landscape. At the same time, new types of stone tools requiring more skill began to be produced; new technologies included polishing.
+                    <span id="words">Here are some words</span>
 
-                        The Neolithic also saw the construction of a wide variety of monuments in the landscape, many of which were megalithic in nature. The earliest of these are the chambered tombs of the Early Neolithic, although in the Late Neolithic this form of monumentalization was replaced by the construction of stone circles, a trend that would continue into the following Bronze Age. These constructions are taken to reflect ideological changes, with new ideas about religion, ritual and social hierarchy.
-
-                        The Neolithic people in Europe were not literate, so left behind no written record that modern historians can study; all that is known about this time period in Europe comes from archaeological investigations. This investigation began amongst the antiquarians of the 18th century, intensified in the 19th when John Lubbock coined the term "Neolithic". In the 20th and 21st centuries, further excavation and synthesis went ahead, dominated by figures like V. Gordon Childe, Stuart Piggott, Julian Thomas and Richard Bradley. </p>
                 </div>
 
                 <!-- Selector Split -->
@@ -139,6 +136,23 @@
                 </div>
             </div>
         </div>
+
+        <style>
+            .char-green {
+                color: green;
+            }
+            .char-red {
+                color: red;
+            }
+        </style>
+
+        <script> var span = document.getElementById('words'),
+            text = span.innerHTML.split(' ').map(function(el) {
+                return '<span class="char-' + 'green' + '">' + el + ' ' + '</span>';
+            }).join('');
+        console.log(span);
+        span.innerHTML = text;
+        </script>
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script
