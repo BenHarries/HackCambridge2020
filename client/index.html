@@ -62,7 +62,7 @@
         <!-- Words -->
         <div class="col-8">
 
-            <span id="words">Here are some words</span>
+            <span id="words">Here Here</span>
 
         </div>
 
@@ -157,7 +157,7 @@
     };
 
     function addInNewSentence(currentWordCount) {
-        var new_words = "hello there";
+        var new_words = "Here";
         var span = document.getElementById('words'),
             text = new_words.split(' ').map((el, i) => {
                 // console.log(i,currentWordCount);
@@ -175,32 +175,34 @@
     console.log(span);
     span.innerHTML = text;
 
-    function sleep(time) {
-        return new Promise((resolve) => setTimeout(resolve, time));
-    }
 
     var currentWord = 0;
     currentWordCount = document.getElementById('words').children.length;
+    var newWord = 0
 
     function add_word() {
         console.log(currentWord, document.getElementById('words').children.length);
-        if (currentWord <= currentWordCount) {
-            addInNewSentence(currentWordCount);
+        if ("Here " == document.getElementById(newWord).innerHTML) {
+            console.log("true");
+
+            changeColour(newWord.toString());
+            currentWord += 1;
+            newWord += 1;
+
+        }
+        if (currentWord) {
+            addInNewSentence(currentWordCount + newWord - 1);
+            currentWord -= 1;
             setTimeout(() => {
                 add_word()
             }, 1000)
             //sleep(() => {console.log('asdf')}, 1000); //.then( () => {(addInNewSentence(currentWordCount))});
 
-        } else {
-                if ("Here " == document.getElementById(currentWord).innerHTML) {
-                    console.log("true");
-
-                    changeColour(currentWord.toString());
-                }
-
         }
 
-        currentWord += 1;
+
+
+
     }
 
     add_word();
