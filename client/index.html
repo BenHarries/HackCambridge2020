@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
+        <!-- Requiblack meta tags -->
         <meta charset="utf-8" />
         <meta
             name="viewport"
@@ -141,20 +141,50 @@
             .char-green {
                 color: green;
             }
-            .char-red {
-                color: red;
+            .char-black {
+                color: black;
             }
         </style>
 
-        <script> var span = document.getElementById('words'),
-            text = span.innerHTML.split(' ').map(function(el) {
-                return '<span class="char-' + 'green' + '">' + el + ' ' + '</span>';
+        <script> 
+        
+
+            function changeColour(currentWord) {
+                document.getElementById(currentWord).className = "char-green";
+            
+            };
+
+        var span = document.getElementById('words'),
+            text = span.innerHTML.split(' ').map((el, i) => {
+                return '<span class="char-' + 'black' + '" id = "' + i + '">' + el + ' ' + '</span>';
             }).join('');
         console.log(span);
         span.innerHTML = text;
+
+        var currentWord = 0;
+        while (currentWord <= document.getElementById('words').children.length) {
+            // console.log(document.getElementById(currentWord).innerHTML == "Here ")
+
+            if ("Here " == document.getElementById(currentWord).innerHTML){
+                console.log("true")
+
+                changeColour(currentWord.toString())
+
+            }
+            currentWord += 1
+
+
+
+
+            
+        }
+
+        
+
+    
         </script>
 
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    //     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script
             src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
