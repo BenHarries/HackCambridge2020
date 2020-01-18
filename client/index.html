@@ -154,6 +154,10 @@
             
             };
 
+            function addInNewSentence(currentWordCount) {
+                
+            }
+
         var span = document.getElementById('words'),
             text = span.innerHTML.split(' ').map((el, i) => {
                 return '<span class="char-' + 'black' + '" id = "' + i + '">' + el + ' ' + '</span>';
@@ -173,11 +177,10 @@
             }
             currentWord += 1
 
-
-
-
-            
         }
+
+        addInNewSentence(currentWordCount)
+
 
         
 
