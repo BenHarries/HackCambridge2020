@@ -1,236 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Requiblack meta tags -->
-        <meta charset="utf-8" />
-        <meta
+<head>
+    <!-- Requiblack meta tags -->
+    <meta charset="utf-8"/>
+    <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+    />
 
-        <!-- Bootstrap CSS -->
-        <link
+    <!-- Bootstrap CSS -->
+    <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
-        />
+    />
 
-        <title>Hack Cambridge 2020</title>
+    <title>Hack Cambridge 2020</title>
 
-        <style>
-            div.scrollmenu {
-                background-color: rgb(201, 201, 201);
-                overflow: auto;
-                white-space: nowrap;
-            }
+    <style>
+        div.scrollmenu {
+            background-color: rgb(201, 201, 201);
+            overflow: auto;
+            white-space: nowrap;
+        }
 
-            div.scrollmenu a {
-                display: inline-block;
-                color: white;
-                text-align: center;
-                padding: 14px;
-                text-decoration: none;
-            }
+        div.scrollmenu a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+        }
 
-            div.scrollmenu a:hover {
-                background-color: #777;
-            }
+        div.scrollmenu a:hover {
+            background-color: #777;
+        }
 
-            div.scrollmenu a:active {
-                background-color: #777;
-            }
-        </style>
+        div.scrollmenu a:active {
+            background-color: #777;
+        }
+    </style>
 
-        <!-- FontAwesome -->
-        <script src="https://kit.fontawesome.com/dbea95f351.js" crossorigin="anonymous"></script>
-        <script src="./index.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/dbea95f351.js" crossorigin="anonymous"></script>
+    <script src="./index.js"></script>
 
-    </head>
+</head>
 
-    <body>
-        <!-- Heading -->
-        <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1 ">Hack Cambridge 2020</span>
-            <a class="nav-link" href="https://github.com/BenHarries/HackCambridge2020" target="_blank"> <i class="fas fa-external-link-alt fa-2x"></i> </i></a>
-        </nav>
+<body>
+<!-- Heading -->
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1 ">Hack Cambridge 2020</span>
+    <a class="nav-link" href="https://github.com/BenHarries/HackCambridge2020" target="_blank"> <i
+            class="fas fa-external-link-alt fa-2x"></i> </i></a>
+</nav>
 
-        <!-- Words / Selector Split -->
-        <div class="container">
-            <div class="row" style="padding-top: 20px;">
-                <!-- Words -->
-                <div class="col-8">
+<!-- Words / Selector Split -->
+<div class="container">
+    <div class="row" style="padding-top: 20px;">
+        <!-- Words -->
+        <div class="col-8">
 
-                    <span id="words">Here are some words</span>
+            <span id="words">Here are some words</span>
 
-                </div>
-
-                <!-- Selector Split -->
-                <div class="col-4" id="Selector">
-                    <!-- Card -->
-                    <div
-                            class="card border-info mb-3"
-                            style="max-width: 18rem;"
-                    >
-                        <button
-                                type="button"
-                                class="btn btn-success btn-lg btn-block"
-                                onclick="init(0)"
-                        >
-                            Start
-                        </button>
-                        <div class="card-body text-info">
-                            <div id="label-container"></div>
-                            <div id="filler-label-container">
-                                <div class="progress">
-                                    <div
-                                            class="progress-bar progress-bar-striped}"
-                                            role="progressbar"
-                                            aria-valuenow="0"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                    ></div>
-                                </div>
-                                <br />
-                                <div class="progress">
-                                    <div
-                                            class="progress-bar progress-bar-striped}"
-                                            role="progressbar"
-                                            aria-valuenow="0"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                    ></div>
-                                </div>
-                                <br />
-                                <div class="progress">
-                                    <div
-                                            class="progress-bar progress-bar-striped}"
-                                            role="progressbar"
-                                            aria-valuenow="0"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                    ></div>
-                                </div>
-                                <br />
-                                <div class="progress">
-                                    <div
-                                            class="progress-bar progress-bar-striped}"
-                                            role="progressbar"
-                                            aria-valuenow="0"
-                                            aria-valuemin="0"
-                                            aria-valuemax="100"
-                                    ></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div
-                                class="card-footer bg-transparent border-info text-info"
-                                id="footer"
-                        >
-                            Accuracy:
-                        </div>
-
-                        <div id="sequence"></div>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <style>
-            .char-green {
-                color: green;
-            }
-            .char-black {
-                color: black;
-            }
-        </style>
+        <!-- Selector Split -->
+        <div class="col-4" id="Selector">
+            <!-- Card -->
+            <div
+                    class="card border-info mb-3"
+                    style="max-width: 18rem;"
+            >
+                <button
+                        type="button"
+                        class="btn btn-success btn-lg btn-block"
+                        onclick="init(0)"
+                >
+                    Start
+                </button>
+                <div class="card-body text-info">
+                    <div id="label-container"></div>
+                    <div id="filler-label-container">
+                        <div class="progress">
+                            <div
+                                    class="progress-bar progress-bar-striped}"
+                                    role="progressbar"
+                                    aria-valuenow="0"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                            ></div>
+                        </div>
+                        <br/>
+                        <div class="progress">
+                            <div
+                                    class="progress-bar progress-bar-striped}"
+                                    role="progressbar"
+                                    aria-valuenow="0"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                            ></div>
+                        </div>
+                        <br/>
+                        <div class="progress">
+                            <div
+                                    class="progress-bar progress-bar-striped}"
+                                    role="progressbar"
+                                    aria-valuenow="0"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                            ></div>
+                        </div>
+                        <br/>
+                        <div class="progress">
+                            <div
+                                    class="progress-bar progress-bar-striped}"
+                                    role="progressbar"
+                                    aria-valuenow="0"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
 
-        <script> 
-        
+                <div
+                        class="card-footer bg-transparent border-info text-info"
+                        id="footer"
+                >
+                    Accuracy:
+                </div>
 
-            function changeColour(currentWord) {
-                document.getElementById(currentWord).className = "char-green";
-            
-            };
+                <div id="sequence"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-            function addInNewSentence(currentWordCount) {
-                var new_words = "hello there";
-                var span = document.getElementById('words'),
-                    text = new_words.split(' ').map((el, i) => {
-                        // console.log(i,currentWordCount);
-                        var a = parseInt(i) + parseInt(currentWordCount);
-                        return '<span class="char-' + 'black' + '" id = "' + a + '">' + el + ' ' + '</span>';
-                    }).join('');
-                    console.log(span);
-                    span.innerHTML += text;
-            }
+<style>
+    .char-green {
+        color: green;
+    }
 
+    .char-black {
+        color: black;
+    }
+</style>
+
+<script>
+
+
+    function changeColour(currentWord) {
+        document.getElementById(currentWord).className = "char-green";
+
+    };
+
+    function addInNewSentence(currentWordCount) {
+        var new_words = "hello there";
         var span = document.getElementById('words'),
-            text = span.innerHTML.split(' ').map((el, i) => {
-                return '<span class="char-' + 'black' + '" id = "' + i + '">' + el + ' ' + '</span>';
+            text = new_words.split(' ').map((el, i) => {
+                // console.log(i,currentWordCount);
+                var a = parseInt(i) + parseInt(currentWordCount);
+                return '<span class="char-' + 'black' + '" id = "' + a + '">' + el + ' ' + '</span>';
             }).join('');
         console.log(span);
-        span.innerHTML = text;
+        span.innerHTML += text;
+    }
 
-        function sleep (time) {
-            return new Promise((resolve) => setTimeout(resolve, time));
-            }
+    var span = document.getElementById('words'),
+        text = span.innerHTML.split(' ').map((el, i) => {
+            return '<span class="char-' + 'black' + '" id = "' + i + '">' + el + ' ' + '</span>';
+        }).join('');
+    console.log(span);
+    span.innerHTML = text;
 
-        var currentWord = 0;
-        while (currentWord <= 20) {
-            // console.log(document.getElementById(currentWord).innerHTML == "Here ")
-            currentWordCount = document.getElementById('words').children.length;
-            console.log(currentWord, document.getElementById('words').children.length);
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
 
-            if (currentWord >=  currentWordCount) {
-                sleep(1000).then(() => {(addInNewSentence(currentWordCount))});
-             
-            } else {
-                if (currentWord < currentWordCount) {
-                if ("Here " == document.getElementById(currentWord).innerHTML){
-                console.log("true")
+    var currentWord = 0;
+    currentWordCount = document.getElementById('words').children.length;
 
-                changeColour(currentWord.toString())            }
-                
+    function add_word() {
+        console.log(currentWord, document.getElementById('words').children.length);
+        if (currentWord <= currentWordCount) {
+            addInNewSentence(currentWordCount);
+            setTimeout(() => {
+                add_word()
+            }, 1000)
+            //sleep(() => {console.log('asdf')}, 1000); //.then( () => {(addInNewSentence(currentWordCount))});
 
-            }}
+        } else {
+                if ("Here " == document.getElementById(currentWord).innerHTML) {
+                    console.log("true");
 
-            
-            currentWord += 1
-
-
-           
-
+                    changeColour(currentWord.toString());
+                }
 
         }
 
+        currentWord += 1;
+    }
+
+    add_word();
 
 
+</script>
 
-        
-
-
-        
-
-    
-        </script>
-
-    //     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+//     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+></script>
+</body>
 </html>
