@@ -1,0 +1,22 @@
+{
+  "name": "hackcambridge2020",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenHarries/HackCambridge2020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenHarries/HackCambridge2020/issues"
+  },
+  "homepage": "https://github.com/BenHarries/HackCambridge2020#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
