@@ -155,7 +155,15 @@
             };
 
             function addInNewSentence(currentWordCount) {
-                
+                var new_words = "hello there";
+                var span = document.getElementById('words'),
+                    text = new_words.split(' ').map((el, i) => {
+                        // console.log(i,currentWordCount);
+                        var a = parseInt(i) + parseInt(currentWordCount);
+                        return '<span class="char-' + 'black' + '" id = "' + a + '">' + el + ' ' + '</span>';
+                    }).join('');
+                    console.log(span);
+                    span.innerHTML += text;
             }
 
         var span = document.getElementById('words'),
@@ -165,21 +173,42 @@
         console.log(span);
         span.innerHTML = text;
 
-        var currentWord = 0;
-        while (currentWord <= document.getElementById('words').children.length) {
-            // console.log(document.getElementById(currentWord).innerHTML == "Here ")
+        function sleep (time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+            }
 
-            if ("Here " == document.getElementById(currentWord).innerHTML){
+        var currentWord = 0;
+        while (currentWord <= 20) {
+            // console.log(document.getElementById(currentWord).innerHTML == "Here ")
+            currentWordCount = document.getElementById('words').children.length;
+            console.log(currentWord, document.getElementById('words').children.length);
+
+            if (currentWord >=  currentWordCount) {
+                sleep(1000).then(() => {(addInNewSentence(currentWordCount))});
+             
+            } else {
+                if (currentWord < currentWordCount) {
+                if ("Here " == document.getElementById(currentWord).innerHTML){
                 console.log("true")
 
-                changeColour(currentWord.toString())
+                changeColour(currentWord.toString())            }
+                
 
-            }
+            }}
+
+            
             currentWord += 1
+
+
+           
+
 
         }
 
-        addInNewSentence(currentWordCount)
+
+
+
+        
 
 
         
