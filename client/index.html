@@ -62,7 +62,7 @@
         <!-- Words -->
         <div class="col-8">
 
-            <span id="words">she is like a white rose</span>
+            <span id="words">he is like a young king</span>
 
         </div>
 
@@ -368,7 +368,7 @@
         console.log("new sentence");
         var new_words = start();
         var span = document.getElementById('words'),
-            text = new_words.replace(/[,\/#!$%\^&\*;:{}=\-_`~()]""/g,"").split(' ').map((el, i) => {
+            text = new_words.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(' ').map((el, i) => {
                 // console.log(i,currentWordCount);
                 var a = parseInt(i) + parseInt(currentWordCount);
                 return '<span class="char-' + 'black' + '" id = "' + a + '">' + el + ' ' + '</span>';
@@ -441,14 +441,16 @@
 
         }
 
-        accuracy = (newWord - incorrectWords.length) / newWord
-        console.log(accuracy, "accuracy")
-        document.getElementById("footer").innerHTML = "Accuracy " + accuracy
+        accuracy = ((newWord - incorrectWords.length) / newWord)*100;
+    console.log(accuracy, "accuracy", typeof accuracy);
+    if (!isNaN(accuracy)){
+      document.getElementById('footer').innerHTML = "Accuracy : " + Number.parseFloat(accuracy).toPrecision(3) +"%";
+    }
 
 
     }
 
-    var trump_speeches = "THE King’s son was going to be married, so there were general rejoicings.\
+    var trump_speeches = "THE King’s son was going to be married, so there were general rejoicings. \
 He had waited a whole year for his bride, and at last she had arrived. \
 She was a Russian Princess, and had driven all the way from Finland in a \
 sledge drawn by six reindeer.  The sledge was shaped like a great golden \
