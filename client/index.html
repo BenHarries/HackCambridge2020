@@ -384,7 +384,7 @@
                 window.speechSynthesis.speak(msg);
             }
             if (incorrectWordCount ==7) {
-                skip = true
+                skip = true;
                 if ((incorrectWords.indexOf(current) == -1)) {incorrectWords.push(current)};
 
             }
@@ -393,14 +393,14 @@
         console.log(currentWord, lengthPrevSentence);
         if (currentWord >= lengthPrevSentence) {
             console.log("new sentence");
-            lengthPrevSentence = addInNewSentence(newWord);
-            currentWord = 0;
-            sentence_length[current_sentence] = lengthPrevSentence;
-            if (current_sentence > 2) {
-                console.log('asdf',current_sentence, sentence_length[current_sentence]);
-                //deleteSentence(sentence_length[current_sentence])
+            sentence_length[current_sentence] = lengthPrevSentence - 1;
+            console.log('asdf',current_sentence, sentence_length[current_sentence]);
+            if (current_sentence > 1) {
+                deleteSentence(sentence_length[current_sentence])
             }
             current_sentence += 1;
+            lengthPrevSentence = addInNewSentence(newWord);
+            currentWord = 0;
 
         }
 
