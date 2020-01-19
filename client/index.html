@@ -62,7 +62,7 @@
         <!-- Words -->
         <div class="col-8">
 
-            <span id="words">hello my king</span>
+            <span id="words">she is like a white rose</span>
 
         </div>
 
@@ -352,6 +352,7 @@
 
 
     function addInNewSentence(currentWordCount) {
+        console.log("new sentence")
         var new_words = start();
 ;
         var span = document.getElementById('words'),
@@ -374,7 +375,7 @@
     var currentWord = 0;
     currentWordCount = document.getElementById('words').children.length;
     var newWord = 0;
-    var lengthPrevSentence = 5;
+    var lengthPrevSentence = 6;
     var incorrectWordCount = 0;
 
     let accuracy = 1.0;
@@ -410,7 +411,9 @@
             }
       
         }
+        console.log(currentWord, lengthPrevSentence)
         if (currentWord >= lengthPrevSentence) {
+            console.log("new sentence")
             lengthPrevSentence = addInNewSentence(newWord);
             currentWord = 0;
 
@@ -424,26 +427,26 @@
 
     var trump_speeches = "THE King’s son was going to be married, so there were general rejoicings.\
 He had waited a whole year for his bride, and at last she had arrived. \
-She was a Russian Princess, and had driven all the way from Finland in a\
-sledge drawn by six reindeer.  The sledge was shaped like a great golden\
-swan, and between the swan’s wings lay the little Princess herself.  Her\
-long ermine-cloak reached right down to her feet, on her head was a tiny\
-cap of silver tissue, and she was as pale as the Snow Palace in which she\
-had always lived.  So pale was she that as she drove through the streets\
-all the people wondered.  “She is like a white rose!” they cried, and\
-they threw down flowers on her from the balconies.\
-At the gate of the Castle the Prince was waiting to receive her.  He had\
-dreamy violet eyes, and his hair was like fine gold.  When he saw her he\
-sank upon one knee, and kissed her hand.\
-“Your picture was beautiful,” he murmured, “but you are more beautiful\
-than your picture”; and the little Princess blushed.\
-“She was like a white rose before,” said a young Page to his neighbour,\
-“but she is like a red rose now”; and the whole Court was delighted.\
-For the next three days everybody went about saying, “White rose, Red\
-rose, Red rose, White rose”; and the King gave orders that the Page’s\
-salary was to be doubled.  As he received no salary at all this was not\
-of much use to him, but it was considered a great honour, and was duly\
-published in the Court Gazette.";
+She was a Russian Princess, and had driven all the way from Finland in a \
+sledge drawn by six reindeer.  The sledge was shaped like a great golden \
+swan, and between the swan’s wings lay the little Princess herself.  Her \
+long ermine-cloak reached right down to her feet, on her head was a tiny \
+cap of silver tissue, and she was as pale as the Snow Palace in which she \
+had always lived.  So pale was she that as she drove through the streets \
+all the people wondered.  “She is like a white rose!” they cried, and \
+they threw down flowers on her from the balconies. \
+At the gate of the Castle the Prince was waiting to receive her.  He had \
+dreamy violet eyes, and his hair was like fine gold.  When he saw her he \
+sank upon one knee, and kissed her hand. \
+“Your picture was beautiful,” he murmured, “but you are more beautiful \
+than your picture”; and the little Princess blushed. \
+“She was like a white rose before,” said a young Page to his neighbour, \
+“but she is like a red rose now”; and the whole Court was delighted. \
+For the next three days everybody went about saying, “White rose, Red \
+rose, Red rose, White rose”; and the King gave orders that the Page’s \
+salary was to be doubled.  As he received no salary at all this was not \
+of much use to him, but it was considered a great honour, and was duly \
+published in the Court Gazette.".toLowerCase();
     var nlp = window.nlp_compromise;
     var tokens = [];
 
@@ -481,7 +484,7 @@ published in the Court Gazette.";
         console.log("hello")
     createTokens();
     
-    var currentToken = document.getElementById(incorrectWords[0]).innerHTML - " ";
+    var currentToken = incorrectWords[0].replace(/\s/g, '');
     incorrectWords.shift()
     console.log(currentToken, "yes")
     
