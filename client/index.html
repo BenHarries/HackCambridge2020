@@ -147,6 +147,10 @@
         color: black;
     }
 
+    .char-red {
+        color:red;
+    }
+
     span {
         font-size: xx-large;
     }
@@ -350,6 +354,10 @@
 
     }
 
+    function changeColourRed(currentWord) {
+        document.getElementById(currentWord).className = "char-red";
+    }
+
 
     function addInNewSentence(currentWordCount) {
         console.log("new sentence")
@@ -400,7 +408,8 @@
 
             if ((incorrectWords.indexOf(current) == -1)) {incorrectWords.push(current)};
             // total_incorrectWords.add(document.getElementById(newWord).innerHTML)
-            console.log(incorrectWords, "INCORRECT")
+            console.log(incorrectWords, "INCORRECT");
+            changeColourRed(newWord.toString());
             incorrectWordCount += 1
             if (incorrectWordCount == 5){
                 var msg = new SpeechSynthesisUtterance(document.getElementById(newWord).innerHTML);
