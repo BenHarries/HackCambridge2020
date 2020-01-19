@@ -364,7 +364,7 @@
         var new_words = start();
 ;
         var span = document.getElementById('words'),
-            text = new_words.split(' ').map((el, i) => {
+            text = new_words.replace(/[,\/#!$%\^&\*;:{}=\-_`~()]""/g,"").split(' ').map((el, i) => {
                 // console.log(i,currentWordCount);
                 var a = parseInt(i) + parseInt(currentWordCount);
                 return '<span class="char-' + 'black' + '" id = "' + a + '">' + el + ' ' + '</span>';
@@ -406,7 +406,6 @@
         } else {
             var current = document.getElementById(newWord).innerHTML;
 
-            if ((incorrectWords.indexOf(current) == -1)) {incorrectWords.push(current)};
             // total_incorrectWords.add(document.getElementById(newWord).innerHTML)
             console.log(incorrectWords, "INCORRECT");
             changeColourRed(newWord.toString());
@@ -415,8 +414,10 @@
                 var msg = new SpeechSynthesisUtterance(document.getElementById(newWord).innerHTML);
                 window.speechSynthesis.speak(msg);
             }
-            if (incorrectWordCount >=7) {
+            if (incorrectWordCount ==7) {
                 skip = true
+                if ((incorrectWords.indexOf(current) == -1)) {incorrectWords.push(current)};
+
             }
       
         }
@@ -428,8 +429,8 @@
 
         }
 
-        // accuracy = (newWord - total_incorrectWords.size) / newWord
-        // console.log(accuracy, "accuracy")
+        accuracy = (newWord - incorrectWords.length) / newWord
+        console.log(accuracy, "accuracy")
 
 
     }
