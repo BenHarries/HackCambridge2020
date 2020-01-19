@@ -62,7 +62,7 @@
         <!-- Words -->
         <div class="col-8">
 
-            <span id="words">hello my name is ben</span>
+            <span id="words">hello my king</span>
 
         </div>
 
@@ -173,6 +173,7 @@
 <!-- Speech SDK REFERENCE -->
 <script src="microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nlp_compromise/6.5.3/nlp_compromise.min.js"></script>
 
 <!-- Speech SDK USAGE -->
 <script>
@@ -351,7 +352,8 @@
 
 
     function addInNewSentence(currentWordCount) {
-        var new_words = "i enjoy pizza";
+        var new_words = start();
+;
         var span = document.getElementById('words'),
             text = new_words.split(' ').map((el, i) => {
                 // console.log(i,currentWordCount);
@@ -368,26 +370,45 @@
         }).join('');
     span.innerHTML = text;
 
-    var incorrectWords = new Set()
+    var incorrectWords = [];
     var currentWord = 0;
     currentWordCount = document.getElementById('words').children.length;
     var newWord = 0;
     var lengthPrevSentence = 5;
+    var incorrectWordCount = 0;
+
+    let accuracy = 1.0;
+
+    let skip = false;
 
     function add_word() {
         console.log(document.getElementById(newWord).innerHTML, newWord);
-        if ((angus + " ").includes(document.getElementById(newWord).innerHTML)) {
+        if ((angus + " ").includes(document.getElementById(newWord).innerHTML) || skip) {
+            incorrectWordCount = 0;
             console.log("true");
-            incorrectWords.delete(document.getElementById(newWord).innerHTML)
+            // incorrectWords.delete(document.getElementById(newWord).innerHTML)
             console.log(incorrectWords, "Correct")
 
             changeColour(newWord.toString());
             currentWord += 1;
             newWord += 1;
+            skip = false;
 
         } else {
-            incorrectWords.add(document.getElementById(newWord).innerHTML)
+            var current = document.getElementById(newWord).innerHTML;
+
+            if ((incorrectWords.indexOf(current) == -1)) {incorrectWords.push(current)};
+            // total_incorrectWords.add(document.getElementById(newWord).innerHTML)
             console.log(incorrectWords, "INCORRECT")
+            incorrectWordCount += 1
+            if (incorrectWordCount == 5){
+                var msg = new SpeechSynthesisUtterance(document.getElementById(newWord).innerHTML);
+                window.speechSynthesis.speak(msg);
+            }
+            if (incorrectWordCount >=7) {
+                skip = true
+            }
+      
         }
         if (currentWord >= lengthPrevSentence) {
             lengthPrevSentence = addInNewSentence(newWord);
@@ -395,10 +416,97 @@
 
         }
 
+        // accuracy = (newWord - total_incorrectWords.size) / newWord
+        // console.log(accuracy, "accuracy")
+
 
     }
 
-    // add_word();
+    var trump_speeches = "THE King’s son was going to be married, so there were general rejoicings.\
+He had waited a whole year for his bride, and at last she had arrived. \
+She was a Russian Princess, and had driven all the way from Finland in a\
+sledge drawn by six reindeer.  The sledge was shaped like a great golden\
+swan, and between the swan’s wings lay the little Princess herself.  Her\
+long ermine-cloak reached right down to her feet, on her head was a tiny\
+cap of silver tissue, and she was as pale as the Snow Palace in which she\
+had always lived.  So pale was she that as she drove through the streets\
+all the people wondered.  “She is like a white rose!” they cried, and\
+they threw down flowers on her from the balconies.\
+At the gate of the Castle the Prince was waiting to receive her.  He had\
+dreamy violet eyes, and his hair was like fine gold.  When he saw her he\
+sank upon one knee, and kissed her hand.\
+“Your picture was beautiful,” he murmured, “but you are more beautiful\
+than your picture”; and the little Princess blushed.\
+“She was like a white rose before,” said a young Page to his neighbour,\
+“but she is like a red rose now”; and the whole Court was delighted.\
+For the next three days everybody went about saying, “White rose, Red\
+rose, Red rose, White rose”; and the King gave orders that the Page’s\
+salary was to be doubled.  As he received no salary at all this was not\
+of much use to him, but it was considered a great honour, and was duly\
+published in the Court Gazette.";
+    var nlp = window.nlp_compromise;
+    var tokens = [];
+
+
+    function createTokens() {
+    var nlp_text = nlp.text(trump_speeches);
+    var terms = nlp_text.terms();
+    for (var i = 0; i < terms.length; i++) {
+    tokens.push(terms[i].text);
+    }
+    }
+
+
+    function chooseStartingToken() {
+    var index = Math.floor(Math.random() * tokens.length);
+
+    return tokens[index];    
+    }
+   
+
+
+    function findNextWord(currentWord) {
+    var nextWords = [];
+    for (var w = 0; w < tokens.length-1; w++) {
+    if (tokens[w] == currentWord) {
+    nextWords.push(tokens[w+1]);
+    }
+    }
+    var word = nextWords[Math.floor(Math.random() * nextWords.length)]; // choose a random next word
+    return word;
+    }
+
+
+    function start() {
+        console.log("hello")
+    createTokens();
+    
+    var currentToken = document.getElementById(incorrectWords[0]).innerHTML - " ";
+    incorrectWords.shift()
+    console.log(currentToken, "yes")
+    
+    console.log(currentToken, "yesPlease");
+    var sentence = currentToken + " ";
+    while (currentToken.indexOf(".") < 0) { // while we haven't found a period
+    
+    currentToken = findNextWord(currentToken);
+    if (!currentToken){
+        console.log(currentToken, "no")
+        currentToken = chooseStartingToken();
+        var sentence = currentToken + " ";
+        currentToken = findNextWord(currentToken);
+    }
+    sentence += currentToken + " ";
+    
+    }
+    return sentence;
+    }
+
+
+
+
+
 </script>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=MOgE43ji"></script>
 </body>
 </html>
