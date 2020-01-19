@@ -1,10 +1,12 @@
 
-# Read.io
+# Read.io: AI Reading, adapted to you
 
 **By Alisa Hussain, AJ Sung & Ben Harries**
 
 -   Access the live application at: https://read-io.herokuapp.com/
 -   Our DevPost Submission for Hack Cambridge: https://devpost.com/software/read-io
+
+### read.io is a web app which uses the user's reading progress and **_Natural Language Processing_** to provide fresh, personalised reading content.
 
 ## Inspiration
 In the UK, less than half of those from a Bangladeshi background in the UK speak English as their first language. 1 in 8 from other white backgrounds cannot speak English well, or at all. 
