@@ -365,9 +365,8 @@
     }
 
     function addInNewSentence(currentWordCount) {
-        console.log("new sentence")
+        console.log("new sentence");
         var new_words = start();
-;
         var span = document.getElementById('words'),
             text = new_words.replace(/[,\/#!$%\^&\*;:{}=\-_`~()]""/g,"").split(' ').map((el, i) => {
                 // console.log(i,currentWordCount);
@@ -384,7 +383,7 @@
         }).join('');
     span.innerHTML = text;
 
-    var incorrectWords = [];
+    var incorrectWords = [''];
     var currentWord = 0;
     currentWordCount = document.getElementById('words').children.length;
     var newWord = 0;
@@ -430,7 +429,7 @@
         }
         console.log(currentWord, lengthPrevSentence);
         if (currentWord >= lengthPrevSentence) {
-            console.log("new sentence")
+            console.log("new sentence");
             lengthPrevSentence = addInNewSentence(newWord);
             currentWord = 0;
             sentence_length[current_sentence] = lengthPrevSentence;
@@ -507,7 +506,6 @@ published in the Court Gazette.".toLowerCase();
     function start() {
         console.log("hello")
     createTokens();
-    
     var currentToken = incorrectWords[0].replace(/\s/g, '');
     incorrectWords.shift()
     console.log(currentToken, "yes")
