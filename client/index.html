@@ -83,45 +83,8 @@
                 <div class="card-body text-info">
                     <div id="label-container"></div>
                     <div id="filler-label-container">
-                        <div class="progress">
-                            <div
-                                    class="progress-bar progress-bar-striped}"
-                                    role="progressbar"
-                                    aria-valuenow="0"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                            ></div>
-                        </div>
-                        <br/>
-                        <div class="progress">
-                            <div
-                                    class="progress-bar progress-bar-striped}"
-                                    role="progressbar"
-                                    aria-valuenow="0"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                            ></div>
-                        </div>
-                        <br/>
-                        <div class="progress">
-                            <div
-                                    class="progress-bar progress-bar-striped}"
-                                    role="progressbar"
-                                    aria-valuenow="0"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                            ></div>
-                        </div>
-                        <br/>
-                        <div class="progress">
-                            <div
-                                    class="progress-bar progress-bar-striped}"
-                                    role="progressbar"
-                                    aria-valuenow="0"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"
-                            ></div>
-                        </div>
+                        Words that are tricky for you:
+                        <div id="hardwords"></div>
                     </div>
                 </div>
 
@@ -448,29 +411,36 @@
     }
 
 
+    var toughtext = incorrectWords.map((el, i) => {
+                return '<li>' + el + '</li>';
+            }).join(" ");
+            
+    document.getElementById('hardwords').innerHTML = toughtext;
+
+
     }
 
-    var trump_speeches = "THE King’s son was going to be married, so there were general rejoicings. \
-He had waited a whole year for his bride, and at last she had arrived. \
-She was a Russian Princess, and had driven all the way from Finland in a \
+    var trump_speeches = "THE Kings son was going to be married so there were general rejoicings. \
+He had waited a whole year for his bride and at last she had arrived. \
+She was a Russian Princess and had driven all the way from Finland in a \
 sledge drawn by six reindeer.  The sledge was shaped like a great golden \
-swan, and between the swan’s wings lay the little Princess herself.  Her \
-long ermine-cloak reached right down to her feet, on her head was a tiny \
-cap of silver tissue, and she was as pale as the Snow Palace in which she \
+swan and between the swans wings lay the little Princess herself.  Her \
+long cloak reached right down to her feet on her head was a tiny \
+cap of silver tissue and she was as pale as the Snow Palace in which she \
 had always lived.  So pale was she that as she drove through the streets \
-all the people wondered.  “She is like a white rose!” they cried, and \
+all the people wondered.  She is like a white rose they cried and \
 they threw down flowers on her from the balconies. \
 At the gate of the Castle the Prince was waiting to receive her.  He had \
-dreamy violet eyes, and his hair was like fine gold.  When he saw her he \
-sank upon one knee, and kissed her hand. \
-“Your picture was beautiful,” he murmured, “but you are more beautiful \
-than your picture”; and the little Princess blushed. \
-“She was like a white rose before,” said a young Page to his neighbour, \
-“but she is like a red rose now”; and the whole Court was delighted. \
-For the next three days everybody went about saying, “White rose, Red \
-rose, Red rose, White rose”; and the King gave orders that the Page’s \
+dreamy violet eyes and his hair was like fine gold.  When he saw her he \
+sank upon one knee and kissed her hand. \
+Your picture was beautiful he murmured but you are more beautiful \
+than your picture and the little Princess blushed. \
+She was like a white rose before said a young Page to his neighbour \
+but she is like a red rose now and the whole Court was delighted. \
+For the next three days everybody went about saying White rose Red \
+rose Red rose White rose and the King gave orders that the Pages \
 salary was to be doubled.  As he received no salary at all this was not \
-of much use to him, but it was considered a great honour, and was duly \
+of much use to him but it was considered a great honour and was duly \
 published in the Court Gazette.".toLowerCase();
     var nlp = window.nlp_compromise;
     var tokens = [];
