@@ -590,7 +590,7 @@
     console.log(span);
     span.innerHTML = text;
 
-
+    var incorrectWords = new Set()
     var currentWord = 0;
     currentWordCount = document.getElementById('words').children.length;
     var newWord = 0;
@@ -599,11 +599,15 @@
         console.log(document.getElementById(newWord).innerHTML, newWord, "hellll");
         if ((angus + " ").includes(document.getElementById(newWord).innerHTML)) {
             console.log("true");
-
+            incorrectWords.delete(document.getElementById(newWord).innerHTML)
+            console.log(incorrectWords, "Correct")
             changeColour(newWord.toString());
             currentWord += 1;
             newWord += 1;
 
+        } else {
+            incorrectWords.add(document.getElementById(newWord).innerHTML)
+            console.log(incorrectWords, "INCORRECT")
         }
         if (currentWord >= lengthPrevSentence) {
             lengthPrevSentence = addInNewSentence(newWord);
@@ -620,7 +624,7 @@
 
     }
 
-    add_word();
+    // add_word();
 </script>
 </body>
 </html>
