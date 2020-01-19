@@ -322,8 +322,7 @@
     }
 
     function deleteSentence(current_length, range) {
-        console.log('rnge', current_length, range)
-        for (var i = current_length; i <= range; i++) {
+        for (var i = current_length; i <= current_length + range; i++) {
             console.log('elephant', i);
             document.getElementById(i).innerHTML = '';
         }
@@ -479,8 +478,11 @@ published in the Court Gazette.".toLowerCase();
 
 
     function start() {
-        console.log("hello")
+        console.log("hello");
     createTokens();
+    if (incorrectWords.length < 1) {
+        incorrectWords[0] = '';
+    }
     var currentToken = incorrectWords[0].replace(/\s/g, '');
     incorrectWords.shift()
     console.log(currentToken, "yes")
