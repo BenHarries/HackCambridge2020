@@ -146,6 +146,11 @@
     .char-black {
         color: black;
     }
+
+    span {
+        font-size: xx-large;
+    }
+
 </style>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -343,6 +348,8 @@
         document.getElementById(currentWord).className = "char-green";
 
     }
+
+
     function addInNewSentence(currentWordCount) {
         var new_words = "i enjoy pizza";
         var span = document.getElementById('words'),
