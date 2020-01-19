@@ -148,67 +148,6 @@
     }
 </style>
 
-<script>
-
-
-//    function changeColour(currentWord) {
-//        document.getElementById(currentWord).className = "char-green";
-//
-//    };
-//
-//    function addInNewSentence(currentWordCount) {
-//        var new_words = "Here";
-//        var span = document.getElementById('words'),
-//            text = new_words.split(' ').map((el, i) => {
-//                // console.log(i,currentWordCount);
-//                var a = parseInt(i) + parseInt(currentWordCount);
-//                return '<span class="char-' + 'black' + '" id = "' + a + '">' + el + ' ' + '</span>';
-//            }).join('');
-//        console.log(span);
-//        span.innerHTML += text;
-//    }
-//
-//    var span = document.getElementById('words'),
-//        text = span.innerHTML.split(' ').map((el, i) => {
-//            return '<span class="char-' + 'black' + '" id = "' + i + '">' + el + ' ' + '</span>';
-//        }).join('');
-//    console.log(span);
-//    span.innerHTML = text;
-//
-//
-//    var currentWord = 0;
-//    currentWordCount = document.getElementById('words').children.length;
-//    var newWord = 0
-//
-//    function add_word() {
-//        console.log(currentWord, document.getElementById('words').children.length);
-//        if ("Here " == document.getElementById(newWord).innerHTML) {
-//            console.log("true");
-//
-//            changeColour(newWord.toString());
-//            currentWord += 1;
-//            newWord += 1;
-//
-//        }
-//        if (currentWord) {
-//            addInNewSentence(currentWordCount + newWord - 1);
-//            currentWord -= 1;
-//            setTimeout(() => {
-//                add_word()
-//            }, 1000)
-//            //sleep(() => {console.log('asdf')}, 1000); //.then( () => {(addInNewSentence(currentWordCount))});
-//
-//        }
-//
-//
-//
-//
-//    }
-//
-//    add_word();
-
-
-</script>
 
 //     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script
@@ -227,70 +166,19 @@
         crossorigin="anonymous"
 ></script>
 
-<div id="content" style="display:none">
-    <table>
-
-        <tr>
-            <td align="right"></td>
-            <td>
-<!--                <button id="speechsdkStartContinuousRecognition">startContinuousRecognitionAsync()</button>-->
-<!--                <button id="speechsdkStopContinuousRecognition" disabled="disabled">STOP stopContinuousRecognitionAsync()</button>-->
-            </td>
-        </tr>
-
-
-        </tr>
-        <tr>
-            <td align="right">Results:</td>
-            <td align="left">
-                <textarea id="phraseDiv" style="display: inline-block;width:200px;height:200px"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td align="right"></td>
-            <td align="left"><textarea id="statusDiv" style="display: inline-block;width:200px;height:200px;overflow: scroll;white-space: nowrap;"></textarea></td>
-        </tr>
-    </table>
-</div>
-
 <!-- Speech SDK REFERENCE -->
 <script src="microsoft.cognitiveservices.speech.sdk.bundle.js"></script>
 
-<!-- Speech Speech SDK Authorization token -->
-<script>
-    // Note: Replace the URL with a valid endpoint to retrieve
-    //       authorization tokens for your subscription.
-
-    // An authorization token is a more secure method to authenticate for a browser deployment as
-    // it allows the subscription keys to be kept secure on a server and a 10 minute use token to be
-    // handed out to clients from an endpoint that can be protected from unauthorized access.
-
-</script>
 
 <!-- Speech SDK USAGE -->
 <script>
     // On document load resolve the Speech SDK dependency
     function Initialize(onComplete) {
         if (!!window.SpeechSDK) {
-            document.getElementById('content').style.display = 'block';
-            // document.getElementById('warning').style.display = 'none';
             onComplete(window.SpeechSDK);
         }
     }
 
-    function compareText(readPhrase) {
-        var samplePhrase = "I like to eat chips";
-        samplePhrase.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-        samplePhrase.replace(/\s{2,}/g," ");
-
-        console.log(str.split(samplePhrase, " "));
-
-
-    }
-</script>
-
-<!-- Browser Hooks -->
-<script>
     let angus = " ";
     var phraseDiv, statusDiv;
     var phrases;
@@ -312,8 +200,7 @@
         } else {
             alert("Audio context not supported");
         }
-    }
-    catch (e) {
+    } catch (e) {
         window.console.log("no sound context found, no audio output. " + e);
     }
 
@@ -328,13 +215,9 @@
 
         // Starts continuous speech recognition.
         sdkStartContinousRecognitionBtn.addEventListener("click", function () {
-            phraseDiv.innerHTML = "";
-            statusDiv.innerHTML = "";
             var lastRecognized = "";
 
             // If an audio file was specified, use it. Else use the microphone.
-            // Depending on browser security settings, the user may be prompted to allow microphone use. Using continuous recognition allows multiple
-            // phrases to be recognized from a single use authorization.
             var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
 
             var speechConfig;
@@ -349,13 +232,8 @@
             // You will receive one or more recognizing events as a speech phrase is recognized, with each containing
             // more recognized speech. The event will contain the text for the recognition since the last phrase was recognized.
             reco.recognizing = function (s, e) {
-                window.console.log(e);
-                statusDiv.innerHTML += "(recognizing) Reason: " + SpeechSDK.ResultReason[e.result.reason] + " Text: " + e.result.text + "\r\n";
-                phraseDiv.innerHTML = lastRecognized + e.result.text;
-                console.log(lastRecognized + e.result.text, "angus");
                 angus = lastRecognized + e.result.text;
                 add_word()
-
 
             };
 
@@ -368,92 +246,39 @@
                 // Indicates that recognizable speech was not detected, and that recognition is done.
                 if (e.result.reason === SpeechSDK.ResultReason.NoMatch) {
                     var noMatchDetail = SpeechSDK.NoMatchDetails.fromResult(e.result);
-                    statusDiv.innerHTML += "(recognized)  Reason: " + SpeechSDK.ResultReason[e.result.reason] + " NoMatchReason: " + SpeechSDK.NoMatchReason[noMatchDetail.reason] + "\r\n";
                 } else {
-                    statusDiv.innerHTML += "(recognized)  Reason: " + SpeechSDK.ResultReason[e.result.reason] + " Text: " + e.result.text + "\r\n";
-                    console.log('recognised');
                     compareText(e.result.text);
                 }
 
                 lastRecognized += e.result.text + "\r\n";
-                phraseDiv.innerHTML = lastRecognized;
             };
 
-            // The event signals that the service has stopped processing speech.
-            // https://docs.microsoft.com/javascript/api/microsoft-cognitiveservices-speech-sdk/speechrecognitioncanceledeventargs?view=azure-node-latest
-            // This can happen for two broad classes of reasons.
-            // 1. An error is encountered.
-            //    In this case the .errorDetails property will contain a textual representation of the error.
-            // 2. No additional audio is available.
-            //    Caused by the input stream being closed or reaching the end of an audio file.
             reco.canceled = function (s, e) {
-                window.console.log(e);
-
-                statusDiv.innerHTML += "(cancel) Reason: " + SpeechSDK.CancellationReason[e.reason];
-                if (e.reason === SpeechSDK.CancellationReason.Error) {
-                    statusDiv.innerHTML += ": " + e.errorDetails;
-                }
-                statusDiv.innerHTML += "\r\n";
             };
 
             // Signals that a new session has started with the speech service
             reco.sessionStarted = function (s, e) {
-                window.console.log(e);
-                statusDiv.innerHTML += "(sessionStarted) SessionId: " + e.sessionId + "\r\n";
             };
 
             // Signals the end of a session with the speech service.
             reco.sessionStopped = function (s, e) {
-                window.console.log(e);
-                statusDiv.innerHTML += "(sessionStopped) SessionId: " + e.sessionId + "\r\n";
                 sdkStartContinousRecognitionBtn.disabled = false;
-                sdkStopContinousRecognitionBtn.disabled = true;
             };
 
             // Signals that the speech service has started to detect speech.
             reco.speechStartDetected = function (s, e) {
-                window.console.log(e);
-                statusDiv.innerHTML += "(speechStartDetected) SessionId: " + e.sessionId + "\r\n";
             };
 
             // Signals that the speech service has detected that speech has stopped.
             reco.speechEndDetected = function (s, e) {
-                window.console.log(e);
-                statusDiv.innerHTML += "(speechEndDetected) SessionId: " + e.sessionId + "\r\n";
             };
 
             // Starts recognition
             reco.startContinuousRecognitionAsync();
-
             sdkStartContinousRecognitionBtn.disabled = true;
-            // sdkStopContinousRecognitionBtn.disabled = false;
         });
 
-        // Stops recognition and disposes of resources.
-        // sdkStopContinousRecognitionBtn.addEventListener("click", function () {
-        //     reco.stopContinuousRecognitionAsync(
-        //         function () {
-        //             reco.close();
-        //             reco = undefined;
-        //         },
-        //         function (err) {
-        //             reco.close();
-        //             reco = undefined;
-        //         });
-        //
-        //     sdkStartContinousRecognitionBtn.disabled = false;
-        //     sdkStopContinousRecognitionBtn.disabled = true;
-        // });
 
-
-
-
-
-
-
-        // If an audio file was specified, use it. Else use the microphone.
-        // Depending on browser security settings, the user may be prompted to allow microphone use. Using continuous recognition allows multiple
-        // phrases to be recognized from a single use authorization.
         var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
         var speechConfig;
         speechConfig = SpeechSDK.SpeechConfig.fromSubscription("f9bef20c5e064a65b33c3467e56f8e8b", "westus");
@@ -461,101 +286,53 @@
         speechConfig.speechRecognitionLanguage = "en-US";
         reco = new SpeechSDK.IntentRecognizer(speechConfig, audioConfig);
 
-        // Set up a Language Understanding Model from Language Understanding Intelligent Service (LUIS).
-        // See https://www.luis.ai/home for more information on LUIS.
 
-
-        // Before beginning speech recognition, setup the callbacks to be invoked when an event occurs.
-
-        // The event recognizing signals that an intermediate recognition result is received.
-        // You will receive one or more recognizing events as a speech phrase is recognized, with each containing
-        // more recognized speech. The event will contain the text for the recognition since the last phrase was recognized.
         reco.recognizing = function (s, e) {
-            window.console.log(e);
-            statusDiv.innerHTML += "(recognizing) Reason: " + SpeechSDK.ResultReason[e.result.reason] + " Text: " + e.result.text + "\r\n";
-            phraseDiv.innerHTML = e.result.text;
         };
-
-        // The event signals that the service has stopped processing speech.
-        // https://docs.microsoft.com/javascript/api/microsoft-cognitiveservices-speech-sdk/speechrecognitioncanceledeventargs?view=azure-node-latest
-        // This can happen for two broad classes or reasons.
-        // 1. An error is encountered.
-        //    In this case the .errorDetails property will contain a textual representation of the error.
-        // 2. No additional audio is available.
-        //    Caused by the input stream being closed or reaching the end of an audio file.
         reco.canceled = function (s, e) {
-            window.console.log(e);
-
-            statusDiv.innerHTML += "(cancel) Reason: " + SpeechSDK.CancellationReason[e.reason];
-            if (e.reason === SpeechSDK.CancellationReason.Error) {
-                statusDiv.innerHTML += ": " + e.errorDetails;
-            }
-            statusDiv.innerHTML += "\r\n";
         };
 
         // The event recognized signals that a final recognition result is received.
         // This is the final event that a phrase has been recognized.
         // For continuous recognition, you will get one recognized event for each phrase recognized.
         reco.recognized = function (s, e) {
-            window.console.log(e);
-
-            statusDiv.innerHTML += "(recognized)  Reason: " + SpeechSDK.ResultReason[e.result.reason];
 
             // Depending on what result reason is returned, different properties will be populated.
             switch (e.result.reason) {
                 // This case occurs when speech was successfully recognized, but the speech did not match an intent from the Language Understanding Model.
                 case SpeechSDK.ResultReason.RecognizedSpeech:
-                    statusDiv.innerHTML += " Text: " + e.result.text;
                     break;
 
                 // Both speech an intent from the model was recognized.
                 case SpeechSDK.ResultReason.RecognizedIntent:
-                    statusDiv.innerHTML += " Text: " + e.result.text + " IntentId: " + e.result.intentId;
-
                     // The actual JSON returned from Language Understanding is a bit more complex to get to, but it is available for things like
                     // the entity name and type if part of the intent.
-                    statusDiv.innerHTML += " Intent JSON: " + e.result.properties.getProperty(SpeechSDK.PropertyId.LanguageUnderstandingServiceResponse_JsonResult);
                     break;
 
                 // No match was found.
                 case SpeechSDK.ResultReason.NoMatch:
                     var noMatchDetail = SpeechSDK.NoMatchDetails.fromResult(e.result);
-                    statusDiv.innerHTML += " NoMatchReason: " + SpeechSDK.NoMatchReason[noMatchDetail.reason];
                     break;
             }
-            statusDiv.innerHTML += "\r\n";
         };
 
         // Signals that a new session has started with the speech service
         reco.sessionStarted = function (s, e) {
-            window.console.log(e);
-            statusDiv.innerHTML += "(sessionStarted) SessionId: " + e.sessionId + "\r\n";
         };
 
         // Signals the end of a session with the speech service.
         reco.sessionStopped = function (s, e) {
-            window.console.log(e);
-            statusDiv.innerHTML += "(sessionStopped) SessionId: " + e.sessionId + "\r\n";
             sdkStartContinousRecognitionBtn.disabled = false;
             sdkStopContinousRecognitionBtn.disabled = true;
         };
 
         // Signals that the speech service has started to detect speech.
         reco.speechStartDetected = function (s, e) {
-            window.console.log(e);
-            statusDiv.innerHTML += "(speechStartDetected) SessionId: " + e.sessionId + "\r\n";
         };
 
         // Signals that the speech service has detected that speech has stopped.
         reco.speechEndDetected = function (s, e) {
-            window.console.log(e);
-            statusDiv.innerHTML += "(speechEndDetected) SessionId: " + e.sessionId + "\r\n";
         };
-
-        // Note: this is how you can process the result directly
-        //       rather then subscribing to the recognized
-        //       event
-
 
         Initialize(function (speechSdk) {
             SpeechSDK = speechSdk;
@@ -563,13 +340,10 @@
     });
 
 
-
-
     function changeColour(currentWord) {
         document.getElementById(currentWord).className = "char-green";
 
-    };
-
+    }
     function addInNewSentence(currentWordCount) {
         var new_words = "i enjoy pizza";
         var span = document.getElementById('words'),
@@ -578,7 +352,6 @@
                 var a = parseInt(i) + parseInt(currentWordCount);
                 return '<span class="char-' + 'black' + '" id = "' + a + '">' + el + ' ' + '</span>';
             }).join('');
-        console.log(span);
         span.innerHTML += text;
         return (new_words.split(' ').length)
     }
@@ -587,7 +360,6 @@
         text = span.innerHTML.split(' ').map((el, i) => {
             return '<span class="char-' + 'black' + '" id = "' + i + '">' + el + ' ' + '</span>';
         }).join('');
-    console.log(span);
     span.innerHTML = text;
 
 
@@ -595,10 +367,10 @@
     currentWordCount = document.getElementById('words').children.length;
     var newWord = 0;
     var lengthPrevSentence = 5;
+
     function add_word() {
-        console.log(document.getElementById(newWord).innerHTML, newWord, "hellll");
+        console.log(document.getElementById(newWord).innerHTML, newWord);
         if ((angus + " ").includes(document.getElementById(newWord).innerHTML)) {
-            console.log("true");
 
             changeColour(newWord.toString());
             currentWord += 1;
@@ -608,14 +380,8 @@
         if (currentWord >= lengthPrevSentence) {
             lengthPrevSentence = addInNewSentence(newWord);
             currentWord = 0;
-            // setTimeout(() => {
-            //     add_word()
-            // }, 1000)
-            //sleep(() => {console.log('asdf')}, 1000); //.then( () => {(addInNewSentence(currentWordCount))});
 
         }
-
-
 
 
     }
