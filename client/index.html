@@ -193,7 +193,7 @@
             var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
 
             var speechConfig;
-            speechConfig = SpeechSDK.SpeechConfig.fromSubscription("f9bef20c5e064a65b33c3467e56f8e8b", "westus");
+            speechConfig = SpeechSDK.SpeechConfig.fromSubscription("8314ac15bfdb4507bf3031340f885179", "westus");
 
             speechConfig.speechRecognitionLanguage = 'en-US';
             reco = new SpeechSDK.SpeechRecognizer(speechConfig, audioConfig);
@@ -206,6 +206,7 @@
             reco.recognizing = function (s, e) {
                 angus = lastRecognized + e.result.text;
                 add_word()
+                console.log(angus)
 
             };
 
